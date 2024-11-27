@@ -1,0 +1,74 @@
+.navbar-brand span{
+    color: white;
+}
+.logo-img {
+    width: clamp(30px, 3vw, 60px);
+    height: clamp(30px, 3vw, 60px);
+}
+.container-fluid {
+    padding: 0 5vw !important;
+}
+.navbar-collapse {
+    display: flex;
+    justify-content: flex-start;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    margin-top: 3vw;
+    padding: 1rem;
+}
+.navbar-nav .nav-item {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 1vw;
+    padding-right: 1rem;
+    font-size: clamp(20px, 1vw, 40px);
+}
+.user-section {
+    font-size: clamp(15px, 1.5vw, 30px);
+    font-weight: bold;
+}
+.greeting { 
+    font-weight: normal;
+    margin-right: 0.3rem;
+}
+.cart-btn:focus {
+    border: none;
+}
+.fa-cart-shopping {
+    font-size: clamp(25px, 1.2vw, 30px);
+    color: var(--green);
+}
+.nav-item:last-child {
+    position: absolute;
+    left: 75%;
+    bottom: 30%;
+}
+@media (min-width: 992px) {
+    .bg-body-tertiary {
+        background-color: var(--bs-tertiary-bg-rgb);
+    }
+    .container-fluid {
+        padding: 0 5vw !important;
+    }
+    .navbar-collapse {
+        justify-content: flex-end;
+        background-color: transparent;
+        margin-top: 0;
+    }
+    .navbar-nav {
+        gap: 2vw;
+        justify-content: space-between;
+    }
+    .navbar-nav .nav-item {
+        margin-top: 0;
+    }
+    .nav-item {
+        display: flex;
+        align-items: center;
+        font-size: 1.2vw;
+    }
+    .nav-item:last-child {
+        position: static;
+    }
+}

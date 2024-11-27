@@ -1,0 +1,56 @@
+.sign-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+}
+.sign-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    width: 80%;
+    height: fit-content;
+    padding: 2rem 0;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5vw 0;
+    gap: 10px;
+    & label {
+        margin-top: 0.5vw;
+        font-size: clamp(20px, 1vw, 30px);
+    }
+    & span {
+        font-size: clamp(20px, 1vw, 30px);
+    }
+    & a {
+        margin-left: 1rem;
+        text-decoration: underline;
+        color: blue;
+    }
+}
+.sign-btn {
+    font-size: 5vw;
+}
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .sign-container {
+        background-color: white;
+        width: 30%;
+        height: 50%;
+    }
+    .form-container {
+        width: 80%;
+    }
+}
