@@ -62,6 +62,26 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  //Automatic Sign out after 2 hours
+  useEffect(() => {
+    let timeout;
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            timeout = setTimeout(async () => {
+                await auth.signOut();
+                toast.info("Session expired. Please log in again.", { position: "top-center", hideProgressBar: true });
+                setTimeout(() => {
+                  window.location.href = "/";
+              }, 1500);
+            }, 2 * 60 * 60 * 1000);
+        } else {
+            clearTimeout(timeout);
+        }
+    });
+
+    return () => clearTimeout(timeout);
+}, []);
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">

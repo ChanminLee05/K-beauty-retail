@@ -50,10 +50,8 @@ export default function SignUp() {
                 <input type='text' className='form-control' id='email' placeholder='Email'required onChange={(e) => setEmail(e.target.value)} value={email}></input>
                 <label htmlFor='password'>Password</label>
                 <input type='text' className='form-control' id='password' placeholder='Password' required onChange={(e) => setPassword(e.target.value)} value={password}></input>
-                <div className="btn-container">
-                    <span>Already have an account? <a href='/login'>Login</a></span>
-                    <button className="btn btn-primary sign-btn" type='submit'>SIGN UP</button>
-                </div>
+                <span>Already have an account? <a href='/login' className='sign-link'>Login</a></span>
+                <button className="btn btn-primary sign-btn" type='submit'>SIGN UP</button>
             </form>
         </div>
         <ToastContainer />
