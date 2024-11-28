@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aquamarine;
+    background-color: lightgrey;
 }
 .sign-container {
     display: flex;
@@ -16,6 +16,7 @@
     width: 80%;
     height: fit-content;
     padding: 2rem 0;
+    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1);
 }
 .form-container {
     display: flex;
@@ -29,11 +30,13 @@
     & span {
         font-size: clamp(20px, 1vw, 30px);
     }
-    & a {
-        margin-left: 1rem;
-        text-decoration: underline;
-        color: blue;
-    }
+}
+.sign-link, .reset-link {
+    text-decoration: underline !important;
+    color: blue !important;
+}
+.sign-link {
+    margin-left: 1rem;
 }
 .sign-btn {
     font-size: 5vw;
@@ -43,12 +46,10 @@
     justify-content: center;
     align-items: center;
 }
-
 @media (min-width: 992px) {
     .sign-container {
         background-color: white;
         width: 30%;
-        height: 50%;
     }
     .form-container {
         width: 80%;
