@@ -109,6 +109,7 @@ export default function Navbar() {
                 <li><a className="dropdown-item" href="/toner">Toner</a></li>
                 <li><a className="dropdown-item" href="/lotion">Lotion</a></li>
                 <li><a className="dropdown-item" href="/serum">Serum</a></li>
+                <li><a className="dropdown-item" href="/add-products">Add Product</a></li>
               </ul>
             </li>
             {userName ? (
