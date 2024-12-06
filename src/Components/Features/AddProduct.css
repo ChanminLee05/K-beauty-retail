@@ -2,27 +2,75 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
     background-color: lightgrey;
+}
+.add-product-side-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 17rem;
+    height: 100vh;
+    background-color: white;
+    padding: 2rem 0;
+}
+.side-bar-bottom {
+    width: 100%;
+    margin-top: 5rem;
+    padding: 0 1rem;
+}
+.side-bar-bottom ul {
+    width: 100%;
+}
+.side-bar-bottom li {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+.side-bar-bottom button {
+    border: none;
+    background-color: white;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-align: left;
+}
+.side-bar-bottom button:focus {
+    background-color: rgb(159, 238, 167);
+}
+.side-bar-bottom button:hover {
+    background-color: rgb(159, 238, 167);
+}
+.side-bar-bottom i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
 }
 .add-product-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 10px;
-    width: 80%;
-    height: fit-content;
-    padding: 2rem 0;
-    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1);
+    background-color: rgb(241, 241, 241);
+    width: 100%;
+    height: 100%;
+    padding: 2rem 3rem;
+    position: relative;
+}
+.add-product-container span {
+    font-size: 2rem;
+}
+.add-btn {
+    border: none;
+    background-color: rgb(159, 238, 167);
+    width: 10rem;
+    height: 3rem;
+    border-radius: 30px;
+    position: absolute;
+    top: 2rem;
+    right: 5rem;
 }
 .add-product-form-container {
     display: flex;
     flex-direction: column;
-    margin: 0.5vw 0;
-    width: 90%;
+    padding-top: 2rem;
+    width: 100%;
     gap: 5px;
     & label {
         margin-top: 0.2rem;
@@ -44,13 +92,42 @@
 .form-left, .form-right {
     width: 100%;
 }
+.form-left-sub {
+    background-color: white;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+}
 #ingredients {
     height: 8rem;
 }
+.form-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    max-height: 100vh;
+}
+.form-right-sub-top {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 100%;
+}
+.form-right-sub {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+.preview-img {
+    margin-top: 10px;
+}
 @media (min-width: 992px) {
     .add-product-container {
-        background-color: white;
-        width: 60%;
+        
     }
     .add-product-form-container {
         

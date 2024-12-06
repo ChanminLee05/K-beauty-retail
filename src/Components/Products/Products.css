@@ -48,7 +48,7 @@
     
 }
 .product {
-    height: fit-content !important;
+    height: 30rem !important;
     max-height: 30rem;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
