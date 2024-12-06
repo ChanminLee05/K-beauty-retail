@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Logo from "../../Assets/clown.png";
 
 export default function Navbar() {
-  const [userName, setUserName] = useState(null);
+  const [userNameState, setUserNameState] = useState(null);
 
   async function fetchUserName() {
     auth.onAuthStateChanged(async (user) => {
@@ -15,12 +15,12 @@ export default function Navbar() {
         const docRef = doc(db, "Users", user.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setUserName(docSnap.data())
+          setUserNameState(docSnap.data())
         } else {
           console.log("User is not logged in")
         }
       } else {
-        setUserName(null);
+        setUserNameState(null);
       }
     })
   }
@@ -94,17 +94,17 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
-              {userName ? (
+              {userNameState ? (
                 <span className="user-section">
                   <span className="greeting">Hello,</span>
-                  {userName.firstName}
+                  {userNameState.firstName}
                 </span>
               ) : (<a href="/login">Login</a>)}
             </li>
             <li className="nav-item drop">
-              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <button className="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Products
-              </a>
+              </button>
               <ul className="dropdown-menu">
                 <li><a className="dropdown-item" href="/toner">Toner</a></li>
                 <li><a className="dropdown-item" href="/lotion">Lotion</a></li>
@@ -112,17 +112,17 @@ export default function Navbar() {
                 <li><a className="dropdown-item" href="/add-products">Add Product</a></li>
               </ul>
             </li>
-            {userName ? (
+            {userNameState ? (
               <li className="nav-item">
               <button className="nav-link" onClick={handleLogOut}>Logout</button>
             </li>
             ) : <></>}
             <li className="nav-item">
               <a className="nav-link position-relative" href="/cart">
-                  <i class="fa-solid fa-cart-shopping"></i>
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  <i className="fa-solid fa-cart-shopping"></i>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     99+
-                    <span class="visually-hidden">cart items</span>
+                    <span className="visually-hidden">cart items</span>
                   </span>
               </a>
             </li>

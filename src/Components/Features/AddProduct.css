@@ -1,0 +1,58 @@
+.add-product-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgrey;
+}
+.add-product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    width: 80%;
+    height: fit-content;
+    padding: 2rem 0;
+    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1);
+}
+.add-product-form-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5vw 0;
+    width: 90%;
+    gap: 5px;
+    & label {
+        margin-top: 0.2rem;
+        font-size: clamp(20px, 1vw, 30px);
+    }
+    & span {
+        font-size: clamp(20px, 1vw, 30px);
+    }
+    & textarea {
+        resize: none;
+    }
+}
+.form-inside {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.form-left, .form-right {
+    width: 100%;
+}
+#ingredients {
+    height: 8rem;
+}
+@media (min-width: 992px) {
+    .add-product-container {
+        background-color: white;
+        width: 60%;
+    }
+    .add-product-form-container {
+        
+    }
+}

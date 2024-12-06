@@ -1,0 +1,76 @@
+.product-page {
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding: 2rem;
+    border-top: 1px solid black;
+    display: flex;
+}
+.side-bar {
+    border-right: 1px solid lightgrey;
+}
+.side-bar > h1 {
+    margin-bottom: 2rem;
+}
+/* Accordian */
+.accordion-button{
+    padding-left: 0 !important;
+}
+.accordion-body {
+    padding-left: 0.2rem !important;
+}
+.accordion-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 0.2rem;
+}
+.accordion-list input[type="radio"] {
+    margin-right: 1rem;
+}
+.accordion-list label {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Rating */
+.fa-star:last-child {
+    margin-right: 0.2rem;
+}
+
+
+/* Right-section */
+.right-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 16px;
+    flex: 1 1 auto;
+    
+}
+.product {
+    height: fit-content !important;
+    max-height: 30rem;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+.product:hover {
+    transform: translateY(-2px);
+}
+.card-img-top {
+    height: 250px;
+}
+
+/* Favourite Button */
+.favorite-btn {
+    border: none;
+    outline: none;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: transparent;
+}
+.favorite-btn > i {
+    font-size: 1.5rem;
+    color: red;
+}
