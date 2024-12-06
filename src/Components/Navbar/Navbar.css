@@ -1,5 +1,6 @@
 .navbar-brand span{
-    color: white;
+    font-family: var(--logo-font);
+    font-size: 2rem;
 }
 .logo-img {
     width: clamp(30px, 3vw, 60px);

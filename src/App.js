@@ -10,6 +10,7 @@ import Serum from './Components/Products/Serum.js';
 import Cart from './Components/Cart/Cart.js';
 import PasswordReset from './Components/Features/PasswordReset.js';
 import AddProduct from './Components/Features/AddProduct.js';
+import ProductDetail from './Components/Products/Product/ProductDetail.js';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/toner" element={<Toner />} />
         <Route path="/lotion" element={<Lotion />} />
         <Route path="/serum" element={<Serum />} />
+        <Route path="/product-detail/:title" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>

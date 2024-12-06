@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Product from './Product'
-import { loadProductData } from '../../../Config/config';
+import { loadProductDataByType } from '../../../Config/config';
 
 export default function ProductList({ priceFilter, skinTypeFilter, ratingFilter, userName, productType }) {
     const [items, setItems] = useState([]);
@@ -9,10 +9,9 @@ export default function ProductList({ priceFilter, skinTypeFilter, ratingFilter,
     useEffect(() => {
         async function fetchData() {
             setIsLoading(true);
-            const data = await loadProductData(productType);
+            const data = await loadProductDataByType(productType);
             if (data) {
                 setItems(Object.values(data));
-                console.log(data)
             } else {
                 console.log("No products found.");
                 setItems([]);
@@ -69,7 +68,7 @@ export default function ProductList({ priceFilter, skinTypeFilter, ratingFilter,
             filteredItems.map((item) => (
                 <Product 
                     key={item.title}
-                    selectedImageUrl={item.images[0] || item.images[1]}
+                    imageUrl={item.images[0] || item.images[1]}
                     brand={item.brand}
                     title={item.title}
                     rating={item.rating}

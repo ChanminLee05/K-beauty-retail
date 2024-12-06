@@ -4,7 +4,7 @@ import { db } from "../../Config/config"
 
 export function useHandleImage() {
     const fileInputRef = useRef(null);
-    const [selectedImageUrl, setSelectedImageUrl] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null);
 
     const allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/PNG'];
     const maxFileSize = 1048487;
@@ -27,11 +27,11 @@ export function useHandleImage() {
         try {
             const base64Data = await convertToBase64(file);
             await saveImageToFirestore(base64Data, title);
-            setSelectedImageUrl(base64Data);
+            setImageUrl(base64Data);
             alert("Image uploaded and saved successfully!");
         } catch (error) {
             console.error("Error uploading image:", error);
-            alert("Failed to upload the image. Please try again.");
+            alert("Fill in the information first");
         }
     }
 
@@ -53,5 +53,5 @@ export function useHandleImage() {
         await setDoc(imageDocRef, { base64: base64Data });
     }
 
-    return { selectedImageUrl, setSelectedImageUrl, fileInputRef, handleImageChange };
+    return { imageUrl, setImageUrl, fileInputRef, handleImageChange };
 }
