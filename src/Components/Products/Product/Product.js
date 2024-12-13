@@ -1,7 +1,8 @@
-import React, {useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function Product({ brand, title, price, productType, rating, skinType, imageUrl, userName }) {
     const [favorites, setFavorites] = useState({});
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
     // const navigate = useNavigate();
     
     function handleFavorite(id) {
@@ -39,17 +40,29 @@ export default function Product({ brand, title, price, productType, rating, skin
       window.location.href = `/product-detail/${encodedTitle}`;
     }
 
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 992);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <div className='card product' onClick={goToProductDetail}>
+    <div className='card product'>
         <button className="favorite-btn" onClick={() => handleFavorite(title)}>
             {favorites[title] ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}
         </button>
-        <img src={imageUrl} className="card-img-top" alt="..." />
-        <div className="card-body">
+        <img src={imageUrl} className="card-img-top" alt="..." onClick={goToProductDetail}/>
+        <div className="card-body" onClick={goToProductDetail}>
             <p><b>{brand}</b></p>
             <h5 className="card-title">{title}</h5>
-            <p className="card-text">{renderStars(rating)}</p>
-            <p><b>{price}</b></p>
+            {isMobile ? null : <p className="card-text">{renderStars(rating)}</p>}
+            <p className='price'><b>${price}</b></p>
             <p style={{display: "none"}}>{productType}</p>
             <p style={{display: "none"}}>{skinType}</p>
         </div>

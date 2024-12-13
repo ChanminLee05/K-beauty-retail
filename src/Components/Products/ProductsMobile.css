@@ -1,0 +1,34 @@
+.brand {
+    font-size: clamp(30px, 2.5vw, 60px);
+    font-family: var(--logo-font);
+    margin: 1rem;
+}
+@media (max-width: 992px) {
+    .category-page {
+        margin-bottom: 5rem;
+    }
+    .head-line {
+        margin-top: 1.5rem;
+        margin-left: 0.6rem;
+    }
+    .product-list-container {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 40%;
+        max-height: 280px;
+        overflow-x: auto;
+        gap: 30px;
+        margin: 0 10px;
+    }
+    .product-list-container .product {
+        height: 250px !important;
+        min-width: 160px;
+        cursor: pointer;
+    }
+    .card-img-top {
+        height: 140px !important;
+    }
+    .card-body {
+        padding: 0.5rem !important;
+    }
+}

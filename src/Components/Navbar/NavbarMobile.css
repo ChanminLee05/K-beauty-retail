@@ -1,0 +1,30 @@
+@media (max-width: 992px) {
+    .nav {
+        background-color: white;
+        border-radius: 10px 10px 0 0;
+    }
+    .nav > ul {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0;
+    }
+    .nav li {
+        height: clamp(50px, 5vw, 60px);
+    }
+    .nav a, .nav details, .nav summary, .nav > span, .nav button {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        font-size: 4vw;
+    }
+    .danger-mobile {
+        position: absolute;
+        top: 10%;
+        left: 80%;
+    }
+}
