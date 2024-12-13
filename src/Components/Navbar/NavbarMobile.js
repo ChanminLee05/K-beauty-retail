@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import "./Navbar.css"
+import "./NavbarMobile.css"
 import { auth, db } from '../../Config/config'
 import { getDoc, doc } from 'firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
 
-export default function Navbar() {
+export default function NavbarMobile() {
   const [userNameState, setUserNameState] = useState(null);
 
   async function fetchUserName() {
@@ -67,37 +67,23 @@ export default function Navbar() {
 }, []);
 
   return (
-    <nav className="nav fixed-top">
+    <nav className="nav fixed-bottom">
       <ul className='nav-list'>
-        <li><a className="navbar-brand" href="/"><span>BrandNew</span></a></li>
+        <li><a className="navbar-brand" href="/"><i className="fa-solid fa-house"></i>Home</a></li>
         <li>
           {userNameState ? (
             <a className="user-section" href='#'>
-              <span className="greeting">Hello,</span>
-              {userNameState.firstName}
+              <i className="fa-solid fa-user"></i>Logout
             </a>
-          ) : (<a href="/login">Login</a>)}
+          ) : (<a href="/login"><i className="fa-solid fa-user"></i>Login</a>)}
         </li>
         <li>
-          <details>
-            <summary>Products</summary>
-            <ul className="">
-              <li><a className="" href="/toner">Toner<i className="fa-solid fa-caret-right"></i></a></li>
-              <li><a className="" href="/lotion">Lotion<i className="fa-solid fa-caret-right"></i></a></li>
-              <li><a className="" href="/serum">Serum<i className="fa-solid fa-caret-right"></i></a></li>
-              <li><a className="" href="/add-products">Add Product</a></li>
-            </ul>
-          </details>
+            <a href='#'><i className="fa-regular fa-star"></i>Favorite</a>
         </li>
-        {userNameState ? (
-          <li className="">
-            <button className="logout-btn" onClick={handleLogOut}>Logout</button>
-        </li>
-        ) : <></>}
         <li className="">
           <a className="position-relative" href="/cart">
-              <i className="fa-solid fa-cart-shopping"></i>
-              <span className="translate-middle badge rounded-pill bg-danger">
+              <i className="fa-solid fa-cart-shopping"></i>Cart
+              <span className="translate-middle badge rounded-pill bg-danger danger-mobile">
                 99+
                 <span className="visually-hidden">cart items</span>
               </span>

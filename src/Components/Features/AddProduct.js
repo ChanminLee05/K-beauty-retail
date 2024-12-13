@@ -79,7 +79,6 @@ export default function AddProduct() {
         </div>
         <div className="add-product-container">
             <span><i className="fa-solid fa-store"></i> Add Products</span>
-            <button className="add-btn" type='submit'><i className="fa-solid fa-check m-2"></i>Add Product</button>
             <form className='add-product-form-container' autoComplete='off' onSubmit={handleSave}>
                 <div className="form-inside">
                     <div className="form-left">
@@ -203,6 +202,7 @@ export default function AddProduct() {
                         </div>
                     </div>
                 </div>
+                <button className="add-btn" type='submit'><i className="fa-solid fa-check m-2"></i>Add Product</button>
             </form>
         </div>
         <ToastContainer />

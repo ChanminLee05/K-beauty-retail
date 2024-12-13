@@ -10,7 +10,6 @@ body {
 :root {
   --logo-font: "Cinzel", serif;
   --green: #088178;
-  --bs-tertiary-bg-rgb: transparent !important;
   & a {
     text-decoration: none;
     color: black;

@@ -4,6 +4,7 @@ import { loadProductData } from '../../../Config/config';
 import { auth } from '../../../Config/config'
 import Navbar from '../../Navbar/Navbar'
 import "./ProductDetail.css";
+import NavbarMobile from '../../Navbar/NavbarMobile';
 
 
 
@@ -12,6 +13,22 @@ export default function ProductDetail() {
     const { title } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
+
+    useEffect(() => {
+      function handleResize() {
+        const isCurrentlyMobile = window.innerWidth < 992;
+        setIsMobile(isCurrentlyMobile);
+      }
+  
+      window.addEventListener('resize', handleResize);
+
+      handleResize();
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
@@ -64,31 +81,29 @@ export default function ProductDetail() {
       }
 
   return (
-    <>
-        <Navbar userName={userName} />
-        <div className='product-detail-page'>
-            <div className="product-detail-inner">
-                <div className="product-detail-left">
-                    <img className="product-detail-img" src={images[0] || images[1]} alt={`Product-${title}`} />
-                </div>
-                <div className="product-detail-right">
-                    <p><strong>{brand}</strong></p>
-                    <p>{title}</p>
-                    <p><strong>${price}</strong></p>
-                    <p><strong>Product Type:</strong> {productType}</p>
-                    <p>Size: <button>{size}</button></p>
-                    <p>{renderStars(rating)}</p>
-                    <p><strong>Skin Type:</strong> {skinType}</p>
-                    <button className='btn add-cart-btn'><i class="fa-solid fa-basket-shopping"></i>Add To Cart</button>
-                </div>
-            </div>
-            <div className="product-detail-info">
-                <h3>About Product</h3>
-                <p><span>Description:</span> {description}</p>
-                <h5>Ingredients</h5>
-                <p>{ingredients}</p>
-            </div>
-        </div>
-    </>
+    <div className='product-detail-page'>
+      {isMobile ? <NavbarMobile /> : <Navbar userName={userName} />}
+          <div className="product-detail-inner">
+              <div className="product-detail-left">
+                  <img className="product-detail-img" src={images[0] || images[1]} alt={`Product-${title}`} />
+              </div>
+              <div className="product-detail-right">
+                  <p><strong>{brand}</strong></p>
+                  <p>{title}</p>
+                  <p><strong>${price}</strong></p>
+                  <p><strong>Product Type:</strong> {productType}</p>
+                  <p>Size: <button>{size}</button></p>
+                  <p>{renderStars(rating)}</p>
+                  <p><strong>Skin Type:</strong> {skinType}</p>
+                  <button className='btn add-cart-btn'><i class="fa-solid fa-basket-shopping"></i>Add To Cart</button>
+              </div>
+          </div>
+          <div className="product-detail-info">
+              <h3>About Product</h3>
+              <p><span>Description:</span> {description}</p>
+              <h5>Ingredients</h5>
+              <p className='ingredient-text'>{ingredients}</p>
+          </div>
+    </div>
   )
 }
