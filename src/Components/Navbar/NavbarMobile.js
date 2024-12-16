@@ -72,9 +72,9 @@ export default function NavbarMobile() {
         <li><a className="navbar-brand" href="/"><i className="fa-solid fa-house"></i>Home</a></li>
         <li>
           {userNameState ? (
-            <a className="user-section" href='#'>
+            <button className="user-section" onClick={handleLogOut}>
               <i className="fa-solid fa-user"></i>Logout
-            </a>
+            </button>
           ) : (<a href="/login"><i className="fa-solid fa-user"></i>Login</a>)}
         </li>
         <li>

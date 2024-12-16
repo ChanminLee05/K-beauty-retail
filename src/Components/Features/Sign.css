@@ -1,17 +1,20 @@
 .sign-page {
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightgrey;
+    background: url("../../Assets/login.jpg") no-repeat center;
+    background-size: cover;
+
 }
 .sign-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: rgba(248, 248, 248, 0.8);
     border-radius: 10px;
     width: 80%;
     height: fit-content;
@@ -38,6 +41,30 @@
 .sign-link {
     margin-left: 1rem;
 }
+
+/* Password */
+.password-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.password-show-btn {
+    position: absolute;
+    right: 10px;
+    top: 73%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    height: 24px;
+    width: 24px;
+}
+.password-show-btn img {
+    height: 100%;
+    width: 100%;
+}
+
 .sign-btn {
     font-size: 5vw;
 }
@@ -48,7 +75,6 @@
 }
 @media (min-width: 992px) {
     .sign-container {
-        background-color: white;
         width: 30%;
     }
     .form-container {
