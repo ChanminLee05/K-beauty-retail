@@ -4,6 +4,8 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
 import "./Sign.css";
+import View from "../../Assets/view.png";
+import Hide from "../../Assets/hide.png";
 
 
 export default function SignUp() {
@@ -11,6 +13,7 @@ export default function SignUp() {
     const [lName, setLName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isPasswordShown, setPasswordShown] = useState(false);
 
     async function handleSignUp(e) {
         e.preventDefault();
@@ -37,6 +40,13 @@ export default function SignUp() {
         }
     }
 
+    function togglePassword() {
+        const password = document.getElementById('password');
+        const type = password.type === 'password' ? 'text' : 'password';
+        password.type = type;
+        setPasswordShown(!isPasswordShown);
+    }
+
   return (
     <div className='sign-page'>
         <div className="sign-container">
@@ -48,8 +58,21 @@ export default function SignUp() {
                 <input type='text' className='form-control' id='lName' placeholder='Last Name' required onChange={(e) => setLName(e.target.value)} value={lName}></input>
                 <label htmlFor='email'>Email</label>
                 <input type='text' className='form-control' id='email' placeholder='Email'required onChange={(e) => setEmail(e.target.value)} value={email}></input>
-                <label htmlFor='password'>Password</label>
-                <input type='text' className='form-control' id='password' placeholder='Password' required onChange={(e) => setPassword(e.target.value)} value={password}></input>
+                <div className="password-container">
+                    <label htmlFor='password'>Password</label>
+                    <input 
+                        type={isPasswordShown ? 'text' : 'password'} 
+                        className='form-control' 
+                        id='password' 
+                        placeholder='Password' 
+                        required 
+                        minLength='8' 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        value={password} />
+                    <button className="password-show-btn" onClick={togglePassword}>
+                        <img src={isPasswordShown ? View : Hide} alt={isPasswordShown ? 'Hide password' : 'Show password'}/>
+                    </button>
+                </div>
                 <span>Already have an account? <a href='/login' className='sign-link'>Login</a></span>
                 <button className="btn btn-primary sign-btn" type='submit'>SIGN UP</button>
             </form>

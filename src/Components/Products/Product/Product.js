@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 export default function Product({ brand, title, price, productType, rating, skinType, imageUrl, userName }) {
     const [favorites, setFavorites] = useState({});
     const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
-    // const navigate = useNavigate();
     
     function handleFavorite(id) {
         if (!userName) {

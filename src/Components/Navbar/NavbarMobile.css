@@ -22,6 +22,10 @@
         padding: 0 20px;
         font-size: 4vw;
     }
+    .user-section {
+        border: none;
+        background-color: transparent;
+    }
     .danger-mobile {
         position: absolute;
         top: 10%;
