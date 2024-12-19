@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import ProductList from "../../Products/Product/ProductList";
 import "../../Products/ProductsMobile.css";
 
-export default function Category() {
+export default function MobileMainPage() {
     const [priceFilter, setPriceFilter] = useState('');
     const [skinTypeFilter, setSkinTypeFilter] = useState('');
     const [ratingFilter, setRatingFilter] = useState('');

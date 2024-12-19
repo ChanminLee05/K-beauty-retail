@@ -1,13 +1,13 @@
 .sign-page {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     overflow-x: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     background: url("../../Assets/login.jpg") no-repeat center;
     background-size: cover;
-
+    padding: 2rem 0;
 }
 .sign-container {
     display: flex;
@@ -18,7 +18,7 @@
     border-radius: 10px;
     width: 80%;
     height: fit-content;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
     box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1);
 }
 .form-container {
@@ -31,7 +31,7 @@
         font-size: clamp(20px, 1vw, 30px);
     }
     & span {
-        font-size: clamp(20px, 1vw, 30px);
+        font-size: clamp(18px, 1vw, 30px);
     }
 }
 .sign-link, .reset-link {
@@ -76,6 +76,7 @@
 @media (min-width: 992px) {
     .sign-container {
         width: 30%;
+        padding: 2rem 0;
     }
     .form-container {
         width: 80%;

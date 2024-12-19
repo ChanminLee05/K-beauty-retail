@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar'
 import "./Main.css";
 import 'react-toastify/dist/ReactToastify.css';
 import NavbarMobile from '../Navbar/NavbarMobile';
-import Category from './Category/Category';
+import MobileMainPage from './MobileMainPage/MobileMainPage';
 
 export default function Main() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
@@ -26,7 +26,7 @@ export default function Main() {
       {isMobile ? (
         <div>
           <h1 className='brand'>BrandNew</h1>
-          <Category />
+          <MobileMainPage />
         </div>
       ) : (
         <div className="banner-container">

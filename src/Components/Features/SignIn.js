@@ -52,7 +52,7 @@ export default function SignIn() {
                         minLength='8' 
                         onChange={(e) => setPassword(e.target.value)} 
                         value={password} />
-                    <button className="password-show-btn" onClick={togglePassword}>
+                    <button type="button" className="password-show-btn" onClick={togglePassword}>
                         <img src={isPasswordShown ? View : Hide} alt={isPasswordShown ? 'Hide password' : 'Show password'}/>
                     </button>
                 </div>
