@@ -96,7 +96,7 @@ export default function Navbar() {
         ) : <></>}
         <li className="">
           <a className="position-relative" href="/cart">
-              <i className="fa-solid fa-cart-shopping"></i>
+              <i className="fa-solid fa-cart-shopping nav-cart"></i>
               <span className="translate-middle badge rounded-pill bg-danger">
                 99+
                 <span className="visually-hidden">cart items</span>

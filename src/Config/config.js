@@ -147,4 +147,45 @@ export const checkIfFavorited = async (userId, title) => {
   return false;
 };
 
+// Add Cart
+export async function addCart(userId, title) {
+  try {
+      const productDoc = await getDoc(doc(db, "Products", title));
+      if (productDoc.exists()) {
+          const favoriteRef = doc(db, `Users/${userId}/Cart/${title}`);
+          await setDoc(favoriteRef, {
+              ...productDoc.data(),
+              savedAt: new Date().toLocaleString()
+          });
+          alert("Product added in Cart successfully!")
+          console.log("Product added in Cart successfully!");
+      } else {
+          console.error("Product not found.");
+      }
+  } catch (error) {
+      console.error("Error adding to favorites:", error);
+  }
+}
+
+// Delete Favorite
+export async function deleteCart(userId, title) {
+  try {
+      const cartRef = doc(db, `Users/${userId}/Cart/${title}`);
+      await deleteDoc(cartRef);
+      console.log("Product deleted in Cart successfully!");
+  } catch (error) {
+      console.error("Error deleting favorite:", error);
+  }
+}
+
+// Check If Favorited
+export const checkIfCarted = async (userId, title) => {
+  if (userId) {
+      const cartRef = doc(db, `Users/${userId}/Cart/${title}`);
+      const cartDoc = await getDoc(cartRef);
+      return cartDoc.exists();
+  }
+  return false;
+};
+
 export { app, auth, db, storage };
