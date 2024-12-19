@@ -1,14 +1,9 @@
 import { getAuth } from 'firebase/auth';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { collection, doc, getFirestore, setDoc, query, where, getDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, getFirestore, setDoc, query, where, getDoc, getDocs, deleteDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCp0SXa29vZcxCsD1F09TnTbS_voGFwEtk",
   authDomain: "k-beauty-retail.firebaseapp.com",
@@ -26,6 +21,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
+
+// Save Product
 export async function saveProductData(brand, title, description, ingredients, productType, skinType, rating, imageUrl, price, size ) {
   const productData = { brand, title, description, ingredients, productType, skinType, rating, imageUrl, price, size };
 
@@ -48,6 +45,7 @@ export async function saveProductData(brand, title, description, ingredients, pr
   }
 };
 
+// Load Product By Type
 export async function loadProductDataByType(productType) {
   try {
     const productsCollectionRef = collection(db, "Products");
@@ -81,6 +79,7 @@ export async function loadProductDataByType(productType) {
   }
 }
 
+// Load Product
 export async function loadProductData(title) {
   try {
     const productRef = doc(db, "Products", title);
@@ -106,5 +105,46 @@ export async function loadProductData(title) {
       return null;
   }
 }
+
+// Add Favorite
+export async function addFavorite(userId, title) {
+  try {
+      const productDoc = await getDoc(doc(db, "Products", title));
+      if (productDoc.exists()) {
+          const favoriteRef = doc(db, `Users/${userId}/Favorites/${title}`);
+          await setDoc(favoriteRef, {
+              ...productDoc.data(),
+              savedAt: new Date().toLocaleString()
+          });
+          alert("Favorite added successfully!")
+          console.log("Favorite added successfully!");
+      } else {
+          console.error("Product not found.");
+      }
+  } catch (error) {
+      console.error("Error adding to favorites:", error);
+  }
+}
+
+// Delete Favorite
+export async function deleteFavorite(userId, title) {
+  try {
+      const favoriteRef = doc(db, `Users/${userId}/Favorites/${title}`);
+      await deleteDoc(favoriteRef);
+      console.log("Favorite deleted successfully!");
+  } catch (error) {
+      console.error("Error deleting favorite:", error);
+  }
+}
+
+// Check If Favorited
+export const checkIfFavorited = async (userId, title) => {
+  if (userId) {
+      const favoriteRef = doc(db, `Users/${userId}/Favorites/${title}`);
+      const favoriteDoc = await getDoc(favoriteRef);
+      return favoriteDoc.exists();
+  }
+  return false;
+};
 
 export { app, auth, db, storage };

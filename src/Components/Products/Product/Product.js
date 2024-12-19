@@ -1,19 +1,39 @@
 import React, { useState, useEffect } from 'react'
+import { addFavorite, deleteFavorite, checkIfFavorited } from '../../../Config/config';
+import { auth } from '../../../Config/config';
 
 export default function Product({ brand, title, price, productType, rating, skinType, imageUrl, userName }) {
     const [favorites, setFavorites] = useState({});
     const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
     
-    function handleFavorite(id) {
-        if (!userName) {
-            alert("Please log in to use the favorites feature.")
-            return;
-        }
-        setFavorites(prev => ({
-            ...prev,
-            [id]: !prev[id]
-        }));
-    }
+    async function handleFavorite(title) {
+      if (!userName) {
+          alert("Please log in to use the favorites feature.");
+          return;
+      }
+  
+      try {
+          const isCurrentlyFavorited = favorites[title];
+          setFavorites((prev) => ({
+              ...prev,
+              [title]: !isCurrentlyFavorited,
+          }));
+  
+          const userId = auth.currentUser?.uid;
+          if (!userId) {
+              alert("User is not authenticated.");
+              return;
+          }
+  
+          if (!isCurrentlyFavorited) {
+              await addFavorite(userId, title);
+          } else {
+              await deleteFavorite(userId, title);
+          }
+      } catch (error) {
+          console.error("Error handling favorites:", error);
+      }
+  }
 
     function renderStars(rating) {
       const fullStars = Math.floor(rating);
@@ -40,6 +60,16 @@ export default function Product({ brand, title, price, productType, rating, skin
     }
 
   useEffect(() => {
+    const userId = auth.currentUser?.uid;
+    if (userId) {
+        checkIfFavorited(userId, title).then((isFavorited) => {
+            setFavorites((prev) => ({
+                ...prev,
+                [title]: isFavorited,
+            }));
+        });
+    }
+
     function handleResize() {
       setIsMobile(window.innerWidth < 992);
     }
