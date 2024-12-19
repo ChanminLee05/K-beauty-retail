@@ -75,7 +75,7 @@
     .cart-btn:focus {
         border: none;
     }
-    .fa-cart-shopping {
+    .nav-cart {
         font-size: clamp(25px, 1.2vw, 30px);
         color: var(--green);
     }
