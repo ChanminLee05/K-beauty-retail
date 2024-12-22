@@ -150,24 +150,47 @@ export const checkIfFavorited = async (userId, title) => {
 // Add Cart
 export async function addCart(userId, title) {
   try {
-      const productDoc = await getDoc(doc(db, "Products", title));
-      if (productDoc.exists()) {
-          const favoriteRef = doc(db, `Users/${userId}/Cart/${title}`);
-          await setDoc(favoriteRef, {
-              ...productDoc.data(),
-              savedAt: new Date().toLocaleString()
-          });
-          alert("Product added in Cart successfully!")
-          console.log("Product added in Cart successfully!");
-      } else {
-          console.error("Product not found.");
-      }
+    // Reference to the product document
+    const productDocRef = doc(db, "Products", title);
+    const productDoc = await getDoc(productDocRef);
+
+    if (productDoc.exists()) {
+      const productData = productDoc.data();
+      console.log("Product Data:", productData);
+
+      const validProductData = removeUndefinedFields(productData);
+
+      const imagesRef = collection(productDocRef, "Images");
+      const imagesSnapshot = await getDocs(imagesRef);
+
+      const images = imagesSnapshot.docs
+        .map((imageDoc) => imageDoc.data().url)
+        .filter((url) => url !== undefined);
+
+      const cartRef = doc(db, `Users/${userId}/Cart/${title}`);
+
+      await setDoc(cartRef, {
+        ...validProductData,
+        images,
+        savedAt: new Date().toLocaleString
+      });
+
+      alert("Product added to Cart successfully!");
+      console.log("Product added to Cart successfully!");
+    } else {
+      console.error("Product not found in Firestore.");
+    }
   } catch (error) {
-      console.error("Error adding to favorites:", error);
+    console.error("Error adding product to Cart:", error);
   }
 }
 
-// Delete Favorite
+// Remove undefined fields from an object
+function removeUndefinedFields(data) {
+  return Object.fromEntries(Object.entries(data).filter(([_, value]) => value !== undefined));
+}
+
+// Delete Cart
 export async function deleteCart(userId, title) {
   try {
       const cartRef = doc(db, `Users/${userId}/Cart/${title}`);
@@ -175,6 +198,29 @@ export async function deleteCart(userId, title) {
       console.log("Product deleted in Cart successfully!");
   } catch (error) {
       console.error("Error deleting favorite:", error);
+  }
+}
+
+//Load Cart
+export async function loadCartData(userId) {
+  try {
+    const cartCollectionRef = collection(db, `Users/${userId}/Cart`);
+    const querySnapshot = await getDocs(cartCollectionRef);
+
+    if (!querySnapshot.empty) {
+      const products = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      return products;
+    } else {
+      console.log("No products found in cart.");
+      return [];
+    }
+  } catch (err) {
+    console.error("Error loading cart data:", err);
+    return [];
   }
 }
 
@@ -187,5 +233,6 @@ export const checkIfCarted = async (userId, title) => {
   }
   return false;
 };
+
 
 export { app, auth, db, storage };
