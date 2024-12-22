@@ -54,12 +54,6 @@ export default function SignUp() {
                 createdDateTime: new Date().toLocaleString(),
             });
 
-            const favoritesCollectionRef = doc(db, `Users/${user.uid}/Favorites`, "Placeholder");
-            const cartCollectionRef = doc(db, `Users/${user.uid}/Cart`, "Placeholder");
-
-            await setDoc(favoritesCollectionRef, { addedAt: new Date().toLocaleString() });
-            await setDoc(cartCollectionRef, { addedAt: new Date().toLocaleString() });
-
             toast.success("Account registered successfully!", { position: "top-center", hideProgressBar: true });
             await auth.signOut();
             setTimeout(() => {
