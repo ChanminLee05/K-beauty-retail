@@ -3,6 +3,7 @@ import "./Navbar.css"
 import { auth, db } from '../../Config/config'
 import { getDoc, doc } from 'firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Navbar() {
   const [userNameState, setUserNameState] = useState(null);
@@ -73,27 +74,35 @@ export default function Navbar() {
         <li>
           {userNameState ? (
             <a className="user-section" href='#'>
-              <span className="greeting">Hello,</span>
-              {userNameState.firstName}
+              <button className="btn user-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hello, <span><b>{userNameState.firstName}</b></span>
+              </button>
+              <ul class="dropdown-menu user-dropdown-menu">
+                <li className="user-dropdown-list">
+                  <h6 class="dropdown-header">
+                    <p><b>{userNameState.firstName}<span>{userNameState.lastName}</span></b></p>
+                    <p>{userNameState.email}</p>
+                  </h6>
+                </li>
+                <hr className="dropdown-divider"/>
+                <li className="user-dropdown-list"><a className="dropdown-item" href="/manage"><h6>Manage Account</h6></a></li>
+                <hr className="dropdown-divider"/>
+                <li className="user-dropdown-list"><button className="dropdown-item" href="#" onClick={handleLogOut}><h6>Sign Out</h6></button></li>
+              </ul>
             </a>
           ) : (<a href="/login">Login</a>)}
         </li>
         <li>
-          <details>
-            <summary>Products</summary>
-            <ul className="">
-              <li><a className="" href="/toner">Toner<i className="fa-solid fa-caret-right"></i></a></li>
-              <li><a className="" href="/lotion">Lotion<i className="fa-solid fa-caret-right"></i></a></li>
-              <li><a className="" href="/serum">Serum<i className="fa-solid fa-caret-right"></i></a></li>
-              <li><a className="" href="/add-products">Add Product</a></li>
-            </ul>
-          </details>
+        <details>
+          <summary>Products</summary>
+          <ul className="">
+            <li><a className="" href="/toner">Toner<i className="fa-solid fa-caret-right"></i></a></li>
+            <li><a className="" href="/lotion">Lotion<i className="fa-solid fa-caret-right"></i></a></li>
+            <li><a className="" href="/serum">Serum<i className="fa-solid fa-caret-right"></i></a></li>
+            <li><a className="" href="/add-products">Add Product</a></li>
+          </ul>
+        </details>
         </li>
-        {userNameState ? (
-          <li className="">
-            <button className="logout-btn" onClick={handleLogOut}>Logout</button>
-        </li>
-        ) : <></>}
         <li className="">
           <a className="position-relative" href="/cart">
               <i className="fa-solid fa-cart-shopping nav-cart"></i>

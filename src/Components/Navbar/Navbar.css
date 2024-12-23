@@ -1,7 +1,7 @@
 @media (min-width: 992px) {
     .nav {
         background-color: transparent;
-        padding: 1.5vw 4vw 0 0;
+        padding: 1.5vw 8vw 0 0;
     }
     .nav > ul {
         width: 100%;
@@ -31,15 +31,53 @@
         width: clamp(30px, 3vw, 60px);
         height: clamp(30px, 3vw, 60px);
     }
+
+    /* User-section */
     .user-section {
         font-size: clamp(15px, 1.5vw, 30px);
         font-weight: bold;
     }
-    .greeting { 
+    .user-btn { 
         font-weight: normal;
         padding-right: 2px;
+        border: none;
+        background-color: transparent;
+        position: relative;
     }
-
+    .user-btn span {
+        margin-left: 0.5rem;
+    }
+    .user-btn:focus {
+        border: none;
+    }
+    .user-btn:active {
+        border: none;
+    }
+    .user-dropdown-list {
+        margin-left: 0 !important;
+    }
+    .dropdown-header {
+        display: flex !important;
+        flex-direction: column;
+        padding: 1rem !important;
+    }
+    .dropdown-header > p {
+        margin-bottom: 0.2rem;
+    }
+    .dropdown-header span {
+        margin-left: 0.3rem;
+    }
+    .dropdown-divider {
+        margin: 0.2rem !important;
+    }
+    .dropdown-item {
+        padding: 0 1rem !important;
+    }
+    .dropdown-item:hover {
+        border-radius: 10px !important;
+        background-color: rgb(245, 245, 245) !important;
+        color: black !important;
+    }
     details {
         transition: all 0.3s ease-in-out;
     }
