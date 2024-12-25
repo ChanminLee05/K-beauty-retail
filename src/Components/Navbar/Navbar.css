@@ -1,6 +1,11 @@
+:root {
+    --nav-height: clamp(30px, 5vw, 60px);
+    --brand-size: clamp(30px, 2.5vw, 60px);
+    --nav-list-size: clamp(15px, 1.5vw, 30px);
+}
+
 @media (min-width: 992px) {
     .nav {
-        background-color: transparent;
         padding: 1.5vw 8vw 0 0;
     }
     .nav > ul {
@@ -10,7 +15,7 @@
         align-items: center;
     }
     .nav li {
-        height: clamp(30px, 5vw, 60px);
+        height: var(--nav-height);
     }
     .nav a, .nav details, .nav summary, .nav > span, .nav button {
         height: 100%;
@@ -25,8 +30,10 @@
     }
     .navbar-brand span{
         font-family: var(--logo-font);
-        font-size: clamp(30px, 2.5vw, 60px);
+        font-size: var(--brand-size);
     }
+    
+    /* User for Future */
     .logo-img {
         width: clamp(30px, 3vw, 60px);
         height: clamp(30px, 3vw, 60px);
@@ -34,8 +41,12 @@
 
     /* User-section */
     .user-section {
-        font-size: clamp(15px, 1.5vw, 30px);
+        font-size: var(--nav-list-size);
         font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--nav-height);
     }
     .user-btn { 
         font-weight: normal;
@@ -102,6 +113,9 @@
     details li:first-child {
         margin-left: 0 !important;
     }
+    .product-menu {
+        border: 1px solid lightgray;
+    }
     .fa-caret-right {
         position: absolute;
         right: 2vw;
@@ -114,7 +128,7 @@
         border: none;
     }
     .nav-cart {
-        font-size: clamp(25px, 1.2vw, 30px);
+        font-size: var(--nav-list-size);
         color: var(--green);
     }
     .bg-danger {

@@ -5,7 +5,7 @@ import { getDoc, doc } from 'firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Navbar() {
+export default function Navbar({ bgColor = 'transparent', borderColor}) {
   const [userNameState, setUserNameState] = useState(null);
 
   async function fetchUserName() {
@@ -68,18 +68,18 @@ export default function Navbar() {
 }, []);
 
   return (
-    <nav className="nav fixed-top">
+    <nav className="nav fixed-top" style={{ backgroundColor: bgColor, borderBottom: `1px solid ${borderColor}`}}>
       <ul className='nav-list'>
         <li><a className="navbar-brand" href="/"><span>BrandNew</span></a></li>
         <li>
           {userNameState ? (
-            <a className="user-section" href='#'>
+            <div className="user-section">
               <button className="btn user-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Hello, <span><b>{userNameState.firstName}</b></span>
               </button>
               <ul class="dropdown-menu user-dropdown-menu">
                 <li className="user-dropdown-list">
-                  <h6 class="dropdown-header">
+                  <h6 className="dropdown-header">
                     <p><b>{userNameState.firstName}<span>{userNameState.lastName}</span></b></p>
                     <p>{userNameState.email}</p>
                   </h6>
@@ -89,13 +89,13 @@ export default function Navbar() {
                 <hr className="dropdown-divider"/>
                 <li className="user-dropdown-list"><button className="dropdown-item" href="#" onClick={handleLogOut}><h6>Sign Out</h6></button></li>
               </ul>
-            </a>
+            </div>
           ) : (<a href="/login">Login</a>)}
         </li>
         <li>
         <details>
           <summary>Products</summary>
-          <ul className="">
+          <ul className="product-menu">
             <li><a className="" href="/toner">Toner<i className="fa-solid fa-caret-right"></i></a></li>
             <li><a className="" href="/lotion">Lotion<i className="fa-solid fa-caret-right"></i></a></li>
             <li><a className="" href="/serum">Serum<i className="fa-solid fa-caret-right"></i></a></li>
@@ -103,7 +103,7 @@ export default function Navbar() {
           </ul>
         </details>
         </li>
-        <li className="">
+        <li>
           <a className="position-relative" href="/cart">
               <i className="fa-solid fa-cart-shopping nav-cart"></i>
               <span className="translate-middle badge rounded-pill bg-danger">

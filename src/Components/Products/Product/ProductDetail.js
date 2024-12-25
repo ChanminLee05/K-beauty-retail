@@ -95,7 +95,7 @@ export default function ProductDetail() {
                   <p>Size: <button>{size}</button></p>
                   <p>{renderStars(rating)}</p>
                   <p><strong>Skin Type:</strong> {skinType}</p>
-                  <button className='btn add-cart-btn'><i class="fa-solid fa-basket-shopping"></i>Add To Cart</button>
+                  <button className='btn add-cart-btn'><i className="fa-solid fa-basket-shopping"></i>Add To Cart</button>
               </div>
           </div>
           <div className="product-detail-info">

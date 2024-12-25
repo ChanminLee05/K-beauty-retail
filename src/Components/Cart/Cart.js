@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { auth, loadCartData, deleteCart } from '../../Config/config'
 import Navbar from '../Navbar/Navbar';
+import NavbarMobile from '../Navbar/NavbarMobile';
 import "./Cart.css"
+import "./CartMobile.css"
 
 export default function Cart() {
   const [userName, setUserName] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
+
+  useEffect(() => {
+      function handleResize() {
+        setIsMobile(window.innerWidth < 992);
+      }
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
 
   useEffect(() => {
     // Set userName when the user logs in
@@ -48,9 +63,14 @@ export default function Cart() {
     }
   }
 
+  const subtotal = cartItems.reduce((total, item) => {
+    const itemPrice = parseFloat(item.price) || 0;
+    return total + itemPrice;
+  }, 0);
+
   return (
     <div className='cart-page'>
-      <Navbar userName={userName} />
+      {isMobile ? <NavbarMobile /> : <Navbar userName={userName} bgColor='white' borderColor="lightgray"/> }
       <div className='cart-container'>
         {isLoading ? (
           <p>Loading your cart...</p>
@@ -68,10 +88,10 @@ export default function Cart() {
                   />
                 </div>
                 <div className='cart-item-info'>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
+                  <h3 className='cart-item-title'>{item.title}</h3>
+                  <p className='cart-item-desc'>{item.description}</p>
                   <div className="price-cart-btn-container">
-                    <p>Price: ${item.price}</p>
+                    <p>Price: <b>${item.price}</b></p>
                     <button className="product-cart-btn" onClick={() => handleDelete(auth.currentUser?.uid, item.title)}>
                       <i className="fa-solid fa-trash cart-icon"></i>
                       Delete
@@ -82,6 +102,12 @@ export default function Cart() {
             ))}
           </ul>
         )}
+      </div>
+      <div className="pay-container">
+        <div className="pay-info">
+          <h4>Subtotal ({cartItems.length} items): ${subtotal.toFixed(2)}</h4>
+          <button className="pay-btn">Proceed to Checkout ({cartItems.length} items)</button>
+        </div>
       </div>
     </div>
   )
