@@ -23,7 +23,7 @@ export default function Toner() {
 
   return (
     <>
-      <Navbar userName={userName} />
+      <Navbar userName={userName} bgColor="white" borderColor="lightgray"/>
       <div className='product-page row'>
         <SideBar 
           title="Toners"

@@ -11,6 +11,7 @@ import Cart from './Components/Cart/Cart.js';
 import PasswordReset from './Components/Features/PasswordReset.js';
 import AddProduct from './Components/Features/AddProduct.js';
 import ProductDetail from './Components/Products/Product/ProductDetail.js';
+import ManageAccount from './Components/Manage/ManageAccount.js'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/serum" element={<Serum />} />
         <Route path="/product-detail/:title" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/manage" element={<ManageAccount />} />
       </Routes>
     </Router>
   );
